@@ -12,7 +12,10 @@ gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
