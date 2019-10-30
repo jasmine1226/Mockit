@@ -13,7 +13,7 @@ class InterviewersController < ApplicationController
     end
 
     def show
-        @interviewer = Interviewer.find_by(params[:id])
+        @interviewer = Interviewer.find(params[:id])
     end
 
     def index
@@ -23,6 +23,6 @@ class InterviewersController < ApplicationController
     private
 
     def interviewer_params
-        params.require(:interviewer).permit(:name, :email, :password_digest, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate)
+        params.require(:interviewer).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate)
     end
 end
