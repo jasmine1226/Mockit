@@ -4,7 +4,8 @@ class CreateInterviews < ActiveRecord::Migration[6.0]
       t.string :interviewer_id
       t.string :interviewee_id
       t.string :interview_type, default: "Virtual"
-      t.datetime :datetime
+      t.date :date
+      t.time :time
       t.integer :length
       t.integer :cost
 

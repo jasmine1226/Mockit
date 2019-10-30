@@ -1,0 +1,5 @@
+<h1>Interviewer Index Page</h1>
+<% @interviewers.each do |interviewer| %>
+    <%= link_to interviewer.name, interviewer_path(interviewer) %> - <%= interviewer.email %><br>
+<% end %>
+

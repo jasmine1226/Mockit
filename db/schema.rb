@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 2019_10_30_054005) do
   create_table "interviews", force: :cascade do |t|
     t.string "interviewer_id"
     t.string "interviewee_id"
-    t.string "interview_type"
-    t.datetime "datetime"
+    t.string "interview_type", default: "Virtual"
+    t.date "date"
+    t.time "time"
     t.integer "length"
     t.integer "cost"
     t.datetime "created_at", precision: 6, null: false
