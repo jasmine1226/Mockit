@@ -13,7 +13,11 @@ class InterviewersController < ApplicationController
     end
 
     def show
-        @interviewer = Interviewer.find(params[:id])
+        if params[:id].to_i < 1 || params[:id].to_i > Interviewer.all.length
+            redirect_to interviewers_path
+        else
+            @interviewer = Interviewer.find_by_id(params[:id])
+        end
     end
 
     def index

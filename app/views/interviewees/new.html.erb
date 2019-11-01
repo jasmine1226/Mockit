@@ -1,0 +1,17 @@
+<%= form_with model: @interviewee, local: true do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name %> <br>
+    <%= f.label :email %>
+    <%= f.text_field :email %> <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %> <br>
+    <%= f.label :job_title %>
+    <%= f.text_field :job_title %> <br>
+    <%= f.label :job_level %>
+    <%= f.text_field :job_level %> <br>   
+    <%= f.label "Years of Experience" %>
+    <%= f.number_field :experience %> <br> 
+    <%= f.label :balance %>
+    <%= f.number_field :balance %> <br><br>
+    <%= f.submit "Create Account" %>
+<% end %>
