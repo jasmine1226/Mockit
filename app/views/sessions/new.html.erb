@@ -1,0 +1,9 @@
+<%= form_with url: '/login' do |f| %>
+    <%= f.label :account_type %>
+    <%= f.select :account_type, options_for_select([["Select One", ""], "Interviewer", "Interviewee"]) %><br>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br>
+    <%= f.submit value="Log In" %>
+<% end %>

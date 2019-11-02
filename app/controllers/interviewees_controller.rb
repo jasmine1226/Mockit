@@ -5,6 +5,7 @@ class IntervieweesController < ApplicationController
 
     def create
         @interviewee = Interviewee.new(interviewee_params)
+        @interviewee.id = SecureRandom.uuid
         if @interviewee.save
             redirect_to interviewee_path(@interviewee)
         else
@@ -13,10 +14,8 @@ class IntervieweesController < ApplicationController
     end
 
     def show
-        if params[:id].to_i < 1 || params[:id].to_i > Interviewee.all.length
+        if !@interviewee = Interviewee.find_by_id(params[:id])
             redirect_to interviewees_path
-        else
-            @interviewee = Interviewee.find_by_id(params[:id])
         end
     end
 
