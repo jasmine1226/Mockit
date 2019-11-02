@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'welcome#home'
+
   resources :interviews
   resources :interviewees
   resources :interviewers
