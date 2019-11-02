@@ -11,17 +11,14 @@ class InterviewersController < ApplicationController
         if @interviewer.save
             redirect_to interviewer_path(@interviewer)
         else
-            raise params.inspect
-            #redirect_to new_interviewer_path
+            redirect_to new_interviewer_path
         end
     end
 
     def show
-        #if params[:id].to_i < 1 || params[:id].to_i > Interviewer.all.length
-        #    redirect_to interviewers_path
-        #else
-            @interviewer = Interviewer.find_by_id(params[:id])
-        #end
+        if !@interviewer = Interviewer.find_by_id(params[:id])
+            redirect_to interviewers_path
+        end
     end
 
     def index
@@ -34,8 +31,4 @@ class InterviewersController < ApplicationController
         params.require(:interviewer).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate)
     end
 
-    def generate_random_id
-        self.id = SecureRandom.uuid
-    end 
-    
 end
