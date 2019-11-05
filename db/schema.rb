@@ -10,15 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_050414) do
+ActiveRecord::Schema.define(version: 2019_10_30_054005) do
 
-# Could not dump table "interviewees" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
+  create_table "interviewees", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "uid"
+    t.string "image"
+    t.string "job_title"
+    t.string "job_level"
+    t.integer "experience"
+    t.integer "balance", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
-# Could not dump table "interviewers" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
+  create_table "interviewers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "uid"
+    t.string "image"
+    t.string "job_title"
+    t.string "job_level"
+    t.integer "experience"
+    t.boolean "is_manager"
+    t.boolean "is_active", default: true
+    t.integer "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
-# Could not dump table "interviews" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
+  create_table "interviews", force: :cascade do |t|
+    t.string "interviewer_id"
+    t.string "interviewee_id"
+    t.string "interview_type", default: "Virtual"
+    t.date "date"
+    t.time "time"
+    t.integer "length"
+    t.integer "cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end

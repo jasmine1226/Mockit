@@ -2,3 +2,5 @@
 
 <p>Name: <%= @interviewee.name %></p>
 <p>Email: <%= @interviewee.email %></p>
+
+<%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete %>

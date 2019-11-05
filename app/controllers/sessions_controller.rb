@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
                  session[:account_type] = params[:account_type] 
                  redirect_to interviewer_path(@interviewer)
             else 
-                redirect_to '/login'
+                render :new
             end
 
         elsif params[:account_type] == 'Interviewee'
@@ -21,13 +21,15 @@ class SessionsController < ApplicationController
                  session[:account_type] = params[:account_type]           
                  redirect_to interviewee_path(@interviewee)
             else 
-                redirect_to '/login'
+                render :new
             end
         end
+        
     end
 
     def destroy
         session.delete :id
+        session.delete :account_type
         redirect_to '/'
     end
 

@@ -1,9 +1,9 @@
 module ApplicationHelper
     def current_user
         if session[:id]
-            if Interviewer.find_by_id(session[:id])
+            if session[:account_type] == "Interviewer"
                 @current_user = Interviewer.find(session[:id])
-            else
+            elsif session[:account_type] == "Interviewee"
                 @current_user = Interviewee.find(session[:id])
             end
         else
@@ -12,6 +12,6 @@ module ApplicationHelper
     end
 
     def account_type
-        current_user ? current_user.class.to_s : nil
+        session[:account_type]
     end
 end

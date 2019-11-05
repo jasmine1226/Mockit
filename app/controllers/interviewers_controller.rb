@@ -1,12 +1,12 @@
 class InterviewersController < ApplicationController
-
+    before_action :set_interviewer, only: [:show, :edit, :update, :destroy]
+    
     def new
         @interviewer = Interviewer.new
     end
 
     def create
         @interviewer = Interviewer.new(interviewer_params)
-        @interviewer.id = SecureRandom.uuid
         if @interviewer.save
             redirect_to interviewer_path(@interviewer)
         else
@@ -15,17 +15,15 @@ class InterviewersController < ApplicationController
     end
 
     def show
-        if !@interviewer = Interviewer.find_by_id(params[:id])
+        if !@interviewer
             redirect_to interviewers_path
         end
     end
 
     def edit
-        @interviewer = Interviewer.new
     end
 
     def update
-        @interviewer = Interviewer.find_by_id(session[:id])
         @interviewer.update(interviewer_params)
         if @interviewer.save
             redirect_to interviewer_path(@interviewer)
@@ -34,14 +32,24 @@ class InterviewersController < ApplicationController
         end
     end
 
+    def destroy
+        @interviewer.destroy!
+        session.delete :id
+        redirect_to '/'
+    end
+
     def index
         @interviewers = Interviewer.all
     end
+  
 
-    private
+    private    
 
     def interviewer_params
         params.require(:interviewer).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate)
     end
 
+    def set_interviewer
+        @interviewer = Interviewer.find_by_id(params[:id])
+    end
 end

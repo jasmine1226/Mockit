@@ -1,6 +1,6 @@
 class CreateInterviews < ActiveRecord::Migration[6.0]
   def change
-    create_table :interviews, id: :uuid  do |t|
+    create_table :interviews do |t|
       t.string :interviewer_id
       t.string :interviewee_id
       t.string :interview_type, default: "Virtual"

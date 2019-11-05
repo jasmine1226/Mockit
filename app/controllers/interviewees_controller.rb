@@ -1,11 +1,12 @@
 class IntervieweesController < ApplicationController
+    before_action :set_interviewee, only: [:show, :edit, :update, :destroy]
+    
     def new
         @interviewee = Interviewee.new
     end
 
     def create
         @interviewee = Interviewee.new(interviewee_params)
-        @interviewee.id = SecureRandom.uuid
         if @interviewee.save
             redirect_to interviewee_path(@interviewee)
         else
@@ -14,23 +15,27 @@ class IntervieweesController < ApplicationController
     end
 
     def show
-        if !@interviewee = Interviewee.find_by_id(session[:id])
+        if !@interviewee
             redirect_to interviewees_path
         end
     end
 
     def edit
-        @interviewee = Interviewee.new
     end
 
     def update
-        @interviewee = Interviewee.find_by_id(params[:id])
         @interviewee.update(interviewee_params)
         if @interviewee.save
             redirect_to interviewee_path(@interviewee)
         else
             render :edit
         end
+    end
+
+    def destroy
+        @interviewee.destroy
+        session.delete :id
+        redirect_to '/'
     end
     
     def index
@@ -41,5 +46,9 @@ class IntervieweesController < ApplicationController
 
     def interviewee_params
         params.require(:interviewee).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :balance)
+    end
+
+    def set_interviewee
+        @interviewee = Interviewee.find_by_id(params[:id])
     end
 end
