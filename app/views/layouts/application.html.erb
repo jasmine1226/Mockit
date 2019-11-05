@@ -25,11 +25,18 @@
           <a class="nav-link" href=<%= interviewees_path %> >Interviewees</a>
         </li>
         <% if current_user %>
+
           <% if account_type == "Interviewer" %>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= interviewer_path(current_user) %>>My Profile</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href=<%= edit_interviewer_path(current_user) %>>Update Account</a>
             </li>
           <% else %>
+            <li class="nav-item">
+              <a class="nav-link" href=<%= interviewee_path(current_user) %>>My Profile</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href=<%= edit_interviewee_path(current_user) %>>Update Account</a>
             </li>

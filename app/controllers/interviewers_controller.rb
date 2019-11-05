@@ -8,6 +8,8 @@ class InterviewersController < ApplicationController
     def create
         @interviewer = Interviewer.new(interviewer_params)
         if @interviewer.save
+            session[:id] = @interviewer.id
+            session[:account_type] = 'Interviewer'
             redirect_to interviewer_path(@interviewer)
         else
             render :new
@@ -33,8 +35,9 @@ class InterviewersController < ApplicationController
     end
 
     def destroy
-        @interviewer.destroy!
+        @interviewer.destroy
         session.delete :id
+        session.delete :account_type
         redirect_to '/'
     end
 
@@ -52,4 +55,5 @@ class InterviewersController < ApplicationController
     def set_interviewer
         @interviewer = Interviewer.find_by_id(params[:id])
     end
+
 end

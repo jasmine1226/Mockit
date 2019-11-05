@@ -4,5 +4,6 @@
 <p>Name: <%= @interviewer.name %></p>
 <p>Email: <%= @interviewer.email %></p>
 
-
-<%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete %>
+<% if current_user == @interviewer%>
+    <%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

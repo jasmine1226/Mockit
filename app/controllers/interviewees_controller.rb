@@ -7,7 +7,9 @@ class IntervieweesController < ApplicationController
 
     def create
         @interviewee = Interviewee.new(interviewee_params)
-        if @interviewee.save
+        if @interviewee.save            
+            session[:id] = @interviewee.id
+            session[:account_type] = 'Interviewee'
             redirect_to interviewee_path(@interviewee)
         else
             render :new
@@ -35,6 +37,7 @@ class IntervieweesController < ApplicationController
     def destroy
         @interviewee.destroy
         session.delete :id
+        session.delete :account_type
         redirect_to '/'
     end
     
