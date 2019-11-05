@@ -25,7 +25,7 @@ class InterviewersController < ApplicationController
     end
 
     def update
-        @interviewer = Interviewer.find_by_id(params[:id])
+        @interviewer = Interviewer.find_by_id(session[:id])
         @interviewer.update(interviewer_params)
         if @interviewer.save
             redirect_to interviewer_path(@interviewer)

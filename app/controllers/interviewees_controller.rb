@@ -14,7 +14,7 @@ class IntervieweesController < ApplicationController
     end
 
     def show
-        if !@interviewee = Interviewee.find_by_id(params[:id])
+        if !@interviewee = Interviewee.find_by_id(session[:id])
             redirect_to interviewees_path
         end
     end
