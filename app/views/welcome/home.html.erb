@@ -1,8 +1,10 @@
 <h1>Mockit</h1>
 <h3>#mockit till you make it.</h3><br>
 
-<p>Join the #mockimmunity now!</p>
-<%= link_to "Become an Interviewer", new_interviewer_path %><br>
-<%= link_to "Become an Interviewee", new_interviewee_path %><br>
+<%= if !current_user %>
+    <p>Join the #mockimmunity now!</p>
+    <%= link_to "Become an Interviewer", new_interviewer_path %><br>
+    <%= link_to "Become an Interviewee", new_interviewee_path %><br>
 
-<%= link_to('Log in with Facebook!', '/auth/facebook') %>
+    <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+<% end %>
