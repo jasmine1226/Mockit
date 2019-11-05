@@ -1,6 +1,5 @@
 class InterviewersController < ApplicationController
-    #before_create :generate_random_id
-    
+
     def new
         @interviewer = Interviewer.new
     end
@@ -11,13 +10,27 @@ class InterviewersController < ApplicationController
         if @interviewer.save
             redirect_to interviewer_path(@interviewer)
         else
-            redirect_to new_interviewer_path
+            render :new
         end
     end
 
     def show
         if !@interviewer = Interviewer.find_by_id(params[:id])
             redirect_to interviewers_path
+        end
+    end
+
+    def edit
+        @interviewer = Interviewer.new
+    end
+
+    def update
+        @interviewer = Interviewer.find_by_id(params[:id])
+        @interviewer.update(interviewer_params)
+        if @interviewer.save
+            redirect_to interviewer_path(@interviewer)
+        else
+            render :edit
         end
     end
 

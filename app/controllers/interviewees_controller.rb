@@ -9,7 +9,7 @@ class IntervieweesController < ApplicationController
         if @interviewee.save
             redirect_to interviewee_path(@interviewee)
         else
-            redirect_to new_interviewee_path
+            render :new
         end
     end
 
@@ -19,6 +19,19 @@ class IntervieweesController < ApplicationController
         end
     end
 
+    def edit
+        @interviewee = Interviewee.new
+    end
+
+    def update
+        @interviewee = Interviewee.find_by_id(params[:id])
+        @interviewee.update(interviewee_params)
+        if @interviewee.save
+            redirect_to interviewee_path(@interviewee)
+        else
+            render :edit
+        end
+    end
     
     def index
         @interviewees = Interviewee.all

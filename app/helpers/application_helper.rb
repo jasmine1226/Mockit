@@ -10,4 +10,8 @@ module ApplicationHelper
             @current_user = nil
         end
     end
+
+    def account_type
+        current_user ? current_user.class.to_s : nil
+    end
 end
