@@ -7,12 +7,13 @@ class InterviewsController < ApplicationController
         @interview = Interview.new(interview_params)
         @interview.interviewee_id = session[:id]
         @interview.cost_calc
-        @interview.process_payment
 
-        if @interview.save
+        if @interview.process_payment
+            @interview.save            
             redirect_to interview_path(@interview)
         else
-            redirect_to new_interview_path
+            @interviewee = Interviewee.find_by_id(session[:id])
+            render :low_balance
         end
     end
 

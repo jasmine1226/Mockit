@@ -4,5 +4,7 @@ Interviewer: <%= @interviewer.name %> <br>
 Interviewee: <%= @interviewee.name %> <br>
 Date: <%= @interview.date %> <br>
 Time: <%= @interview.time %> <br>
-Length: <%= @interview.length %> hour(s) <br>
-Cost: $<%= @interview.cost %>
+Length: <%= @interview.length %> hour(s)<br>
+Cost: $<%= @interview.cost %><br>
+
+<p><%= @interview.process_payment %></p>

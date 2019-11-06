@@ -12,8 +12,6 @@ class Interview < ApplicationRecord
         if interviewee.balance >= self.cost
             interviewee.balance -= self.cost
             interviewee.save
-        else
-            "You don't have enough in your balance! Current Balance: $#{interviewee.balance}"
         end
     end
 end
