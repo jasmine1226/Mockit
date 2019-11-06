@@ -1,8 +1,17 @@
 <h1>Interviewer Profile</h1><br>
 
-<p>ID: <%= @interviewer.id %></p>
+<% if @interviewer.image %>
+<img src=<%= @interviewer.image %> alt="Profile Picture"><br>
+<% end %>
+
 <p>Name: <%= @interviewer.name %></p>
 <p>Email: <%= @interviewer.email %></p>
+<p>Job Title: <%= @interviewer.job_title %></p>
+<p>Job Level: <%= @interviewer.job_level %></p>
+<p>Years of Experience: <%= @interviewer.experience %> year(s)</p>
+<p>Manager: <%= @interviewer.is_manager ? "Yes" : "No" %></p>
+<p>Status: <%= @interviewer.is_active ? "Active" : "Inactive" %></p>
+<p>Hourly Rate: $<%= @interviewer.rate %></p>
 
 <% if current_user == @interviewer%>
     <%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete, data: { confirm: 'Are you sure?' } %>

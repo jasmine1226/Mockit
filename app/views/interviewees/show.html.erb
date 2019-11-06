@@ -1,7 +1,16 @@
 <h1>Interviewee Profile</h1><br>
 
+<% if @interviewee.image %>
+<img src=<%= @interviewee.image %> alt="Profile Picture"><br>
+<% end %>
+
 <p>Name: <%= @interviewee.name %></p>
 <p>Email: <%= @interviewee.email %></p>
+<p>I aspire to be a: <%= @interviewee.job_title %></p>
+<p>Job Level: <%= @interviewee.job_level %></p>
+<p>Years of Experience: <%= @interviewee.experience %> year(s)</p>
+<p>Account Balance: $<%= @interviewee.balance %></p>
+
 
 <% if current_user == @interviewee%>
     <%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete, data: { confirm: 'Are you sure?' } %>  

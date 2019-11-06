@@ -5,6 +5,9 @@ class InterviewsController < ApplicationController
 
     def create
         @interview = Interview.new(interview_params)
+        @interview.interviewee_id = session[:id]
+        @interview.cost_calc
+        @interview.process_payment
 
         if @interview.save
             redirect_to interview_path(@interview)

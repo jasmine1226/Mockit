@@ -6,3 +6,7 @@
     <%= link_to "Become an Interviewer", new_interviewer_path %><br>
     <%= link_to "Become an Interviewee", new_interviewee_path %><br>
 <% end %>
+
+<% if current_user && account_type == "Interviewee" %>
+    <%= link_to "Schedule Your Next Interview!", new_interview_path %><br>
+<% end %>

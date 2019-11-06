@@ -36,6 +36,7 @@ class SessionsController < ApplicationController
                 @interviewer = Interviewer.new do |i|
                     i.name = auth['info']['name']
                     i.email = auth['info']['email']
+                    i.image = auth['info']['image']
                     i.uid = auth['uid']
                     i.password_digest = SecureRandom.urlsafe_base64 
                 end
@@ -53,6 +54,7 @@ class SessionsController < ApplicationController
                 @interviewee = Interviewee.new do |i|
                     i.name = auth['info']['name']
                     i.email = auth['info']['email']
+                    i.image = auth['info']['image']
                     i.uid = auth['uid']
                     i.password_digest = SecureRandom.urlsafe_base64 
                 end
