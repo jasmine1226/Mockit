@@ -10,11 +10,29 @@
  <% end %>
 <p>Job Title: <%= @interviewer.job_title %></p>
 <p>Job Level: <%= @interviewer.job_level %></p>
-<p>Years of Experience: <%= @interviewer.experience %> year(s)</p>
+<p>Years of Experience: <%= pluralize(@interviewer.experience, "year") %></p>
 <p>Manager: <%= @interviewer.is_manager ? "Yes" : "No" %></p>
 <p>Status: <%= @interviewer.is_active ? "Active" : "Inactive" %></p>
 <p>Hourly Rate: $<%= @interviewer.rate %></p>
 
+<p>Your Interviews:</p>
 <% if current_user == @interviewer%>
-    <%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <table class="table">
+        <thead>
+            <th scope='col'>Interviewee</th>          
+            <th scope='col'>Interview Time</th>
+            <th scope='col'>Length</th>        
+            <th scope='col'>Cost</th>
+            <th scope='col'>Status</th>    
+        </thead>
+        <% @interviewer.interviews.order(:date).each do |i| %>
+            <td><%=i.interviewee.name%></td>
+            <td><%=display_time(i)%></td>
+            <td><%= pluralize(i.length, "hour") %></td>
+            <td>$<%= i.cost %></td>
+            <td><%=i.status%></td>
+        <% end %>
+    </table>
+
+    <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete %></p>
 <% end %>

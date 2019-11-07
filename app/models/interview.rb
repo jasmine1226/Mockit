@@ -14,4 +14,13 @@ class Interview < ApplicationRecord
             interviewee.save
         end
     end
+
+    def status
+        datetime = self.date + Time.parse("16:30").seconds_since_midnight.seconds
+        if datetime < DateTime.now
+            "Completed"
+        else
+            "Scheduled"
+        end
+    end
 end

@@ -13,6 +13,28 @@
 <p>Years of Experience: <%= @interviewee.experience %> year(s)</p>
 
 <% if current_user == @interviewee%>
-    <p>Account Balance: $<%= @interviewee.balance %></p>
     <%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete, data: { confirm: 'Are you sure?' } %>  
+<% end %>
+
+<% if current_user == @interviewee%>
+    <p>Account Balance: $<%= @interviewee.balance %></p>
+
+    <table class="table">
+        <thead>
+            <th scope='col'>Interviewer</th>          
+            <th scope='col'>Interview Time</th>
+            <th scope='col'>Length</th>        
+            <th scope='col'>Cost</th>
+            <th scope='col'>Status</th>    
+        </thead>
+        <% @interviewee.interviews.order(:date).each do |i| %>
+            <td><%=i.interviewer.name%></td>
+            <td><%=display_time(i)%></td>
+            <td><%= pluralize(i.length, "hour") %></td>
+            <td>$<%= i.cost %></td>
+            <td><%=i.status%></td>
+        <% end %>
+    </table>
+
+    <p><%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete %></p>
 <% end %>
