@@ -7,10 +7,10 @@
     <%= f.text_field :email %> <br>
     <%= f.label :password %>
     <%= f.password_field :password %> <br>
-    <%= f.label :job_title %>
+    <%= f.label "I aspire to be a:" %>
     <%= f.text_field :job_title %> <br>
     <%= f.label :job_level %>
-    <%= f.text_field :job_level %> <br>   
+    <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"]) %> <br>
     <%= f.label "Years of Experience" %>
     <%= f.number_field :experience %> <br> 
     <%= f.label :balance %>

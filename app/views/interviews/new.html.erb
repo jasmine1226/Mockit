@@ -1,7 +1,7 @@
 <%= form_with model: @interview, local: true do |f|%>
     
     <%= f.label :interviewer_id %>
-    <%= f.select :interviewer_id, Interviewer.all.collect { |i| [ i.name, i.id ] }, include_blank: true %><br>
+    <%= f.collection_select(:interviewer_id, Interviewer.all, :id, :name, include_blank: true ) %><br>
     <%= f.label :date %>
     <%= f.date_field :date %><br>
     <%= f.label :time %>

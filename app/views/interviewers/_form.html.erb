@@ -9,7 +9,7 @@
     <%= f.label :job_title %>
     <%= f.text_field :job_title %> <br>
     <%= f.label :job_level %>
-    <%= f.text_field :job_level %> <br>   
+    <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"]) %> <br>
     <%= f.label "Years of Experience" %>
     <%= f.number_field :experience %> <br> 
     <%= f.label :is_manager %>
