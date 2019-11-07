@@ -19,20 +19,28 @@
 <% if current_user == @interviewer%>
     <table class="table">
         <thead>
-            <th scope='col'>Interviewee</th>          
+            <th scope='col'>#</th> 
+            <th scope='col'>Interviewee</th>      
+            <th scope='col'>Interview Date</th>         
             <th scope='col'>Interview Time</th>
             <th scope='col'>Length</th>        
             <th scope='col'>Cost</th>
             <th scope='col'>Status</th>    
         </thead>
-        <% @interviewer.interviews.order(:date).each do |i| %>
-            <td><%=i.interviewee.name%></td>
-            <td><%=display_time(i)%></td>
-            <td><%= pluralize(i.length, "hour") %></td>
-            <td>$<%= i.cost %></td>
-            <td><%=i.status%></td>
+        <% @interviewer.interviews.order(date: :desc, time: :desc)).each_with_index do |interview, i| %>
+            <tr>
+                <td><%= link_to (i+1), interview_path(interview) %></td>
+                <td><%=interview.interviewee.name%></td>              
+                <td><%=display_date(interview)%></td>
+                <td><%=display_time(interview)%></td>
+                <td><%= pluralize(interview.length, "hour") %></td>
+                <td>$<%= interview.cost %></td>
+                <td><%=interview.status%></td>
+            </tr>
         <% end %>
     </table>
 
     <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete %></p>
 <% end %>
+
+<%= link_to 'Back', :back %>

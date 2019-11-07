@@ -1,4 +1,6 @@
 class InterviewsController < ApplicationController
+    before_action :require_login
+
     def new
         @interview = Interview.new
     end

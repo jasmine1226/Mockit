@@ -1,7 +1,14 @@
 module InterviewsHelper
     
+    def datetime(interview)
+        datetime = interview.date + interview.time.seconds_since_midnight.seconds
+    end
+
+    def display_date(interview)        
+        interview.date.strftime("%A, %b %e %Y")
+    end
+
     def display_time(interview)
-        datetime = interview.date + Time.parse("16:30").seconds_since_midnight.seconds
-        interview.date.strftime("%A, %b %e, at %l:%M %p")
+        interview.time.strftime("%l:%M %p")
     end
 end

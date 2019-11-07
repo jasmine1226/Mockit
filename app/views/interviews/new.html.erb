@@ -1,13 +1,10 @@
-<%= form_with model: @interview, local: true do |f|%>
+<%= bootstrap_form_with model: @interview, local: true do |f|%>
     
-    <%= f.label :interviewer_id %>
     <%= f.collection_select(:interviewer_id, Interviewer.all, :id, :name, include_blank: true ) %><br>
-    <%= f.label :date %>
     <%= f.date_field :date %><br>
-    <%= f.label :time %>
     <%= f.time_field :time %><br>    
     <%= f.label "Length (hr)" %>
-    <%= f.number_field :length %><br>
+    <%= f.number_field :length, hide_label: true %><br>
 
 
     <%= f.submit "Schedule Interview" %>

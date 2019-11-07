@@ -20,6 +20,7 @@ gem 'thin'
 gem 'dynamic_form'
 gem 'devise'
 gem 'pry'
+gem "bootstrap_form", "~> 4.0"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
