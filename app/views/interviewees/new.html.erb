@@ -2,7 +2,7 @@
 
     <%= render 'form', f: f %>
 
-    <%= f.submit "Create Account" %>
+    <%= f.submit "Create Account", :class => "btn  btn-primary"  %>
 <% end %>
 <br>
-<%= button_to('Sign up with Facebook!', '/auth/facebook/?account_type=interviewee' ) %>
+<%= button_to 'Sign up with Facebook!', '/auth/facebook/?account_type=interviewee', :class => "btn  btn-primary"  %>

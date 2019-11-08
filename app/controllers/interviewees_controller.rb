@@ -1,5 +1,6 @@
 class IntervieweesController < ApplicationController
     before_action :set_interviewee, only: [:show, :edit, :update, :destroy]
+    before_action :require_login, except: [:new, :create, :show, :index]
     
     def new
         @interviewee = Interviewee.new
@@ -16,8 +17,10 @@ class IntervieweesController < ApplicationController
         end
     end
 
-    def show
-        if !@interviewee
+    def show        
+        if @interviewee
+            @interviews = @interviewee.interviews.filter_by(params.slice(:interviewer_id)) 
+        else
             redirect_to interviewees_path
         end
     end

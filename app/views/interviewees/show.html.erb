@@ -12,9 +12,11 @@
 <p>Job Level: <%= @interviewee.job_level %></p>
 <p>Years of Experience: <%= pluralize(@interviewee.experience, "year") %> </p>
 
-<p>Your Interviews:</p>
 <% if current_user == @interviewee%>
-    <p>Account Balance: $<%= @interviewee.balance %></p>
+     <p>Account Balance: $<%= @interviewee.balance %></p><br>
+
+    <p>Your Interviews:</p>
+    <p><%= render 'filter' %></p>
 
     <table class="table">
         <thead>
@@ -26,7 +28,7 @@
             <th scope='col'>Cost</th>
             <th scope='col'>Status</th>    
         </thead>
-        <% @interviewee.interviews.order(date: :desc, time: :desc).each_with_index do |interview, i| %>
+        <% @interviews.order(date: :desc, time: :desc).each_with_index do |interview, i| %>
             <tr>
                 <td><%= link_to (i+1), interview_path(interview) %></td>
                 <td><%=interview.interviewer.name%></td>              

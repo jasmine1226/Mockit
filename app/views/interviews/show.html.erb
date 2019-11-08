@@ -7,5 +7,3 @@ Time: <%= display_time(@interview) %> <br>
 Length: <%= pluralize(@interview.length, "hour") %><br>
 Cost: $<%= @interview.cost %><br>
 Status: <%= @interview.status %><br>
-
-<p><%= link_to 'Back', :back, method: get %></p>

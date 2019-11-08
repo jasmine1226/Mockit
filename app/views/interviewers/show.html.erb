@@ -15,8 +15,11 @@
 <p>Status: <%= @interviewer.is_active ? "Active" : "Inactive" %></p>
 <p>Hourly Rate: $<%= @interviewer.rate %></p>
 
-<p>Your Interviews:</p>
+
 <% if current_user == @interviewer%>
+    <p>Your Interviews:</p>
+    <p><%= render 'filter' %></p>
+
     <table class="table">
         <thead>
             <th scope='col'>#</th> 
@@ -27,7 +30,7 @@
             <th scope='col'>Cost</th>
             <th scope='col'>Status</th>    
         </thead>
-        <% @interviewer.interviews.order(date: :desc, time: :desc)).each_with_index do |interview, i| %>
+        <% @interviews.order(date: :desc, time: :desc).each_with_index do |interview, i| %>
             <tr>
                 <td><%= link_to (i+1), interview_path(interview) %></td>
                 <td><%=interview.interviewee.name%></td>              
@@ -42,5 +45,3 @@
 
     <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete %></p>
 <% end %>
-
-<%= link_to 'Back', :back %>

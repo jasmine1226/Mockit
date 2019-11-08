@@ -2,5 +2,5 @@
     <%= f.select :account_type, options_for_select([["Select One", ""], "Interviewer", "Interviewee"]) %><br>
     <%= f.text_field :email %><br>
     <%= f.password_field :password %><br>
-    <%= f.submit value="Log In" %>
+    <%= f.submit value="Log In", :class => "btn  btn-primary" %>
 <% end %>

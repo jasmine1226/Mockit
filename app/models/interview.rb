@@ -2,6 +2,11 @@ class Interview < ApplicationRecord
     belongs_to :interviewer
     belongs_to :interviewee
 
+    include Filterable
+    scope :interviewer_id, -> (interviewer_id) { where interviewer_id: interviewer_id }    
+    scope :interviewee_id, -> (interviewee_id) { where interviewee_id: interviewee_id }
+
+
     def cost_calc
         interviwer = Interviewer.find_by_id(self.interviewer_id)
         self.cost = interviewer.rate * self.length
