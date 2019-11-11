@@ -1,4 +1,5 @@
 <%= bootstrap_form_with model: @interview, local: true do |f|%>
+    <%= f.error_messages%>
     
     <%= f.collection_select(:interviewer_id, Interviewer.active, :id, :name, include_blank: true ) %>
     <%= f.date_field :date %>

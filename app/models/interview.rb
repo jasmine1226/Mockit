@@ -1,10 +1,17 @@
 class Interview < ApplicationRecord
     belongs_to :interviewer
     belongs_to :interviewee
+    validates :interviewer_id, :interviewee_id, :date, :time, :length, presence: true
+    validate :future_date, :on => :create
 
     scope :interviewer, -> (interviewer_id) { where interviewer_id: interviewer_id }    
     scope :interviewee, -> (interviewee_id) { where interviewee_id: interviewee_id }
 
+    def future_date
+        if date <= Date.today
+            errors.add(:date, "You cannot schedule an interview on the same day or in the past.")
+        end
+    end
 
     def cost_calc
         interviwer = Interviewer.find_by_id(self.interviewer_id)

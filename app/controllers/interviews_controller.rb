@@ -10,14 +10,18 @@ class InterviewsController < ApplicationController
     def create
         @interview = Interview.new(interview_params)
         @interview.interviewee_id = session[:id]
-        @interview.cost_calc
-
-        if @interview.process_payment
-            @interview.save            
+        
+        if @interview.valid? 
+            @interview.cost_calc
+            if @interview.process_payment
+                @interview.save
+            else
+                @interviewee = Interviewee.find_by_id(session[:id])
+                render :low_balance
+            end
             redirect_to interview_path(@interview), notice: "Interview booking cofirmed. Account Balance: $#{Interviewee.find_by_id(session[:id]).balance}"
         else
-            @interviewee = Interviewee.find_by_id(session[:id])
-            render :low_balance
+            render :new
         end
     end
 
