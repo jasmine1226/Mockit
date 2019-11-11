@@ -4,7 +4,12 @@
     <%= f.text_field :email %>
     <%= f.password_field :password %>
     <%= f.fields_for :company do |c| %>
-        <%= c.text_field :name, label: "Company Name" %>
+        <%= c.text_field :name, list:"companies_autocomplete" %>
+        <datalist id="companies_autocomplete">
+            <% Company.all.each do |company| %>
+                <option value="<%= company.name %>">
+            <% end %>
+        </datalist>
     <% end %>
     <%= f.text_field :job_title %>
     <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"], selected = @interviewer.job_level) %>
