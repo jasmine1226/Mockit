@@ -2,11 +2,12 @@
 <h3>#mockit till you make it.</h3><br>
 
 <% if !current_user %>
-    <p>Join the #mockimmunity now!</p>
-    <%= link_to "Become an Interviewer", new_interviewer_path %><br>
-    <%= link_to "Become an Interviewee", new_interviewee_path %><br>
+    <p>Wanna join the #mockimmunity? </p>
+    Register as an
+    <%= link_to "Interviewer", new_interviewer_path, :class => "btn  btn-outline-primary" %>
+    or <%= link_to "Interviewee", new_interviewee_path, :class => "btn  btn-outline-primary" %> today!<br>
 <% end %>
 
 <% if current_user && account_type == "Interviewee" %>
-    <%= link_to "Schedule Your Next Interview!", new_interview_path %><br>
+    <%= link_to "Schedule Your Next Interview!", new_interview_path, :class => "btn  btn-primary"  %><br>
 <% end %>

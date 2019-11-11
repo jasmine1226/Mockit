@@ -1,11 +1,9 @@
 <%= bootstrap_form_with model: @interview, local: true do |f|%>
     
-    <%= f.collection_select(:interviewer_id, Interviewer.all, :id, :name, include_blank: true ) %><br>
-    <%= f.date_field :date %><br>
-    <%= f.time_field :time %><br>    
+    <%= f.collection_select(:interviewer_id, Interviewer.active, :id, :name, include_blank: true ) %>
+    <%= f.date_field :date %>
+    <%= f.time_field :time %>   
     <%= f.label "Length (hr)" %>
-    <%= f.number_field :length, hide_label: true %><br>
-
-
+    <%= f.number_field :length, hide_label: true %>
     <%= f.submit "Book the Interview", :class => "btn  btn-primary"  %>
 <% end %>

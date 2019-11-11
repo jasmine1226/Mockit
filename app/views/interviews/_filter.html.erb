@@ -4,6 +4,6 @@
     <% elsif account_type == "Interviewer" %>
         <%= f.collection_select(:interviewee_id, Interviewee.all, :id, :name, include_blank: true )  %>
     <% end %>
-    <%= f.submit "Filter", :class => "btn  btn-primary" %>
+    <%= f.submit "Filter", :class => "btn  btn-light" %>
 <% end %>
 <br>

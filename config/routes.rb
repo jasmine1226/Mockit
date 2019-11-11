@@ -12,6 +12,7 @@ end
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  get '/signup' => 'sessions#index'
 
   get '/auth/facebook/callback' => 'sessions#create_from_fb'
 

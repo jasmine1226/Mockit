@@ -10,6 +10,6 @@
     <%= f.select :is_manager, [["Manager", true], ["IC", false]], include_blank: true  %> 
     <%= f.label "Company" %>
     <%= f.collection_select(:company_id, Company.all, :id, :name, include_blank: true ) %>
-    <%= f.submit "Filter", :class => "btn  btn-primary" %>
+    <%= f.submit "Filter", :class => "btn btn-light" %>
 <% end %>
 <br>

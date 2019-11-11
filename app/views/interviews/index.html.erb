@@ -1,3 +1,7 @@
+<% if current_user && account_type == "Interviewee" %>
+    <p><%= link_to "Schedule Your Next Interview!", new_interview_path, :class => "btn  btn-primary" %></p>
+<% end %>
+
 <%= render 'filter'%>
 
 <table class="table">

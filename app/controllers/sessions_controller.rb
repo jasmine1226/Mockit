@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
             if @interviewee = Interviewee.find_by(uid: auth['uid'])
                 session[:id] = @interviewee.id
                 session[:account_type] = 'Interviewee'
-                render :new
+                redirect_to '/'
             else 
                 @interviewee = Interviewee.new do |i|
                     i.name = auth['info']['name']
@@ -70,6 +70,12 @@ class SessionsController < ApplicationController
             end
         else
 
+        end
+    end
+
+    def index
+        if session[:id]
+            redirect_to '/'
         end
     end
 

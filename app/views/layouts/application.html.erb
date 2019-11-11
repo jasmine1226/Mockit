@@ -24,7 +24,6 @@
           <a class="nav-link" href=<%= interviewees_path %> >Interviewees</a>
         </li>
         <% if current_user %>
-
           <% if account_type == "Interviewer" %>
             <li class="nav-item">
               <a class="nav-link" href=<%= interviewer_path(current_user) %>>My Profile</a>
@@ -49,23 +48,28 @@
           <li class="nav-item">
             <a class="nav-link" href='/logout'>Log Out</a>
           </li>
-        <% else %>
+        <% else %>        
+          <li class="nav-item">
+            <a class="nav-link" href='/signup'>Sign Up</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href='/login'>Log In</a>
           </li>
         <% end %>
       </ul>
     </nav>
-      <% if current_user %> 
-        Current User: <%= current_user.name %><br>
-        Account Type: <%= account_type %><br>
-      <% end %>
+
     <div class="w-75 mx-auto mt-5">
+      <% if current_user %> 
+        <div class="text-right">
+          <small class="text-secondary">Logged in as: <%= current_user.name %> (<%= account_type %>)</small>
+        </div>
+      <% end %>
       
       <%= yield %>
       
       <br>
-      <p><%= link_to 'Back', :back, :class => "btn  btn-primary" unless current_page?(root_path) %></p>
+      <p><%= link_to 'Back', :back, :class => "btn  btn-outline-primary" unless current_page?(root_path) %></p>
       
     </div>
   </body>

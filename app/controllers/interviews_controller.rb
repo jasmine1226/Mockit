@@ -14,7 +14,7 @@ class InterviewsController < ApplicationController
 
         if @interview.process_payment
             @interview.save            
-            redirect_to interview_path(@interview)
+            redirect_to interview_path(@interview), notice: "Interview booking cofirmed. Account Balance: $#{Interviewee.find_by_id(session[:id]).balance}"
         else
             @interviewee = Interviewee.find_by_id(session[:id])
             render :low_balance
