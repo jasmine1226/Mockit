@@ -21,6 +21,7 @@ class IntervieweesController < ApplicationController
         if @interviewee
             @interviews = @interviewee.interviews.filter_by(params.slice(:interviewer_id)) 
         else
+            flash[:error] = "This interviewee doesn't exist."
             redirect_to interviewees_path
         end
     end

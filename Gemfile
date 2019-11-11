@@ -18,7 +18,6 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'thin'
 gem 'dynamic_form'
-gem 'devise'
 gem 'pry'
 gem "bootstrap_form", "~> 4.0"
 

@@ -1,5 +1,0 @@
-<%= bootstrap_form_with model: @interview, method: :get, local: true do |f| %>
-    <%= f.collection_select(:interviewer_id, Interviewer.all, :id, :name, include_blank: true )  %>
-
-    <%= f.submit "Filter" %>
-<% end %>

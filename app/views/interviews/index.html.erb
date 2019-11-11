@@ -1,0 +1,26 @@
+<%= render 'filter'%>
+
+<table class="table">
+    <thead>
+        <th scope='col'>#</th> 
+        <th scope='col'>Interviewer</th>   
+        <th scope='col'>Interviewee</th>      
+        <th scope='col'>Date</th>         
+        <th scope='col'>Time</th>
+        <th scope='col'>Length</th>        
+        <th scope='col'>Cost</th>
+        <th scope='col'>Status</th>    
+    </thead>
+    <% @interviews.order(date: :desc, time: :desc).each_with_index do |interview, i| %>
+        <tr>
+            <td><%= link_to (i+1), interview_path(interview) %></td>
+            <td><%=interview.interviewer.name%></td>              
+            <td><%=interview.interviewee.name%></td>              
+            <td><%=display_date(interview)%></td>
+            <td><%=display_time(interview)%></td>
+            <td><%= pluralize(interview.length, "hour") %></td>
+            <td>$<%= interview.cost %></td>
+            <td><%=interview.status%></td>
+        </tr>
+    <% end %>
+</table>

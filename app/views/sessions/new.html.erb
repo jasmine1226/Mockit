@@ -1,6 +1,16 @@
+<% if @error %>
+    <div class="alert alert-danger">
+        <%= @error %>
+    </div>
+<% end %>
+
 <%= bootstrap_form_with url: '/login' do |f| %>
     <%= f.select :account_type, options_for_select([["Select One", ""], "Interviewer", "Interviewee"]) %><br>
     <%= f.text_field :email %><br>
     <%= f.password_field :password %><br>
-    <%= f.submit value="Log In", :class => "btn  btn-primary" %>
+    <%= f.submit value="Log In", :class => "btn  btn-primary" %>  
 <% end %>
+<br>
+If you're an interviewer, <%= link_to 'click here', '/auth/facebook/?account_type=interviewer' %> to log in via Facebook.<br>
+
+If you're an interviewee, <%= link_to 'click here', '/auth/facebook/?account_type=interviewee' %> to log in via Facebook.<br>

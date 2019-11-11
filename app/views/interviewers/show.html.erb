@@ -15,33 +15,8 @@
 <p>Status: <%= @interviewer.is_active ? "Active" : "Inactive" %></p>
 <p>Hourly Rate: $<%= @interviewer.rate %></p>
 
+<%= link_to "Schedule an Interview", new_interviewer_interview_path(@interviewer), :class => "btn  btn-primary"  %><br>
 
 <% if current_user == @interviewer%>
-    <p>Your Interviews:</p>
-    <p><%= render 'filter' %></p>
-
-    <table class="table">
-        <thead>
-            <th scope='col'>#</th> 
-            <th scope='col'>Interviewee</th>      
-            <th scope='col'>Interview Date</th>         
-            <th scope='col'>Interview Time</th>
-            <th scope='col'>Length</th>        
-            <th scope='col'>Cost</th>
-            <th scope='col'>Status</th>    
-        </thead>
-        <% @interviews.order(date: :desc, time: :desc).each_with_index do |interview, i| %>
-            <tr>
-                <td><%= link_to (i+1), interview_path(interview) %></td>
-                <td><%=interview.interviewee.name%></td>              
-                <td><%=display_date(interview)%></td>
-                <td><%=display_time(interview)%></td>
-                <td><%= pluralize(interview.length, "hour") %></td>
-                <td>$<%= interview.cost %></td>
-                <td><%=interview.status%></td>
-            </tr>
-        <% end %>
-    </table>
-
-    <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete %></p>
+    <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete, :class => "btn  btn-secondary" %></p>
 <% end %>

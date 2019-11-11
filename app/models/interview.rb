@@ -2,9 +2,8 @@ class Interview < ApplicationRecord
     belongs_to :interviewer
     belongs_to :interviewee
 
-    include Filterable
-    scope :interviewer_id, -> (interviewer_id) { where interviewer_id: interviewer_id }    
-    scope :interviewee_id, -> (interviewee_id) { where interviewee_id: interviewee_id }
+    scope :interviewer, -> (interviewer_id) { where interviewer_id: interviewer_id }    
+    scope :interviewee, -> (interviewee_id) { where interviewee_id: interviewee_id }
 
 
     def cost_calc
@@ -21,7 +20,7 @@ class Interview < ApplicationRecord
     end
 
     def status
-        datetime = self.date + Time.parse("16:30").seconds_since_midnight.seconds
+        datetime = self.date + self.time.seconds_since_midnight.seconds
         if datetime < DateTime.now
             "Completed"
         else

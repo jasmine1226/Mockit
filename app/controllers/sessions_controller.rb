@@ -6,23 +6,28 @@ class SessionsController < ApplicationController
     def create
         if params[:account_type] == 'Interviewer'
             @interviewer = Interviewer.find_by(email: params[:email])
-            if @interviewer.authenticate(params[:password])
+            if @interviewer && @interviewer.authenticate(params[:password])
                 session[:id] = @interviewer.id
                 session[:account_type] = params[:account_type] 
-                 redirect_to interviewer_path(@interviewer)
-            else 
+                redirect_to interviewer_path(@interviewer)
+            else
+                @error = "Either the email or password is incorrect."
                 render :new
             end
 
         elsif params[:account_type] == 'Interviewee'
             @interviewee = Interviewee.find_by(email: params[:email])
-            if @interviewee.authenticate(params[:password])
+            if @interviewee && @interviewee.authenticate(params[:password])
                 session[:id] = @interviewee.id 
                 session[:account_type] = params[:account_type]           
                 redirect_to interviewee_path(@interviewee)
-            else 
+            else                
+                @error = "Either the email or password is incorrect."
                 render :new
             end
+        else
+            @error = "Please select your account type."
+            render :new
         end
     end
 

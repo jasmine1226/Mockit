@@ -19,7 +19,6 @@ class InterviewersController < ApplicationController
 
     def show
         if @interviewer
-            @interviewer.interviews.filter_by(params.slice(:interviewee_id)) 
         else
             redirect_to interviewers_path
         end        

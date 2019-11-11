@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   root 'welcome#home'
 
+  resources :interviewees do
+    resources :interviews, only: [:index]
+end
+  resources :interviewers do
+      resources :interviews, only: [:new, :create, :index]
+  end
   resources :interviews
-  resources :interviewees
-  resources :interviewers
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

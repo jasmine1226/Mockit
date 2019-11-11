@@ -3,6 +3,7 @@ class InterviewsController < ApplicationController
 
     def new
         @interview = Interview.new
+        @interview.interviewer = Interviewer.find_by_id(params[:interviewer_id]) if params[:interviewer_id]
     end
 
     def create
@@ -16,6 +17,14 @@ class InterviewsController < ApplicationController
         else
             @interviewee = Interviewee.find_by_id(session[:id])
             render :low_balance
+        end
+    end
+
+    def index
+        if session[:account_type] == "Interviewer"
+            @interviews = Interview.all.where("interviewer_id = ?", session[:id]).interviewee(Interviewee.find(params[:interviewer_id]))
+        elsif session[:account_type] == "Interviewee"
+            @interviews = Interview.all.where("interviewee_id = ?", session[:id]).interviewer(Interviewer.find(params[:interviewer_id]))
         end
     end
 

@@ -1,0 +1,9 @@
+<%= form_with model: @interview, method: :get, local: true do |f| %>
+    <% if account_type == "Interviewee" %>
+        <%= f.collection_select(:interviewer_id, Interviewer.all, :id, :name, include_blank: true )  %>    
+    <% elsif account_type == "Interviewer" %>
+        <%= f.collection_select(:interviewee_id, Interviewee.all, :id, :name, include_blank: true )  %>
+    <% end %>
+    <%= f.submit "Filter", :class => "btn  btn-primary" %>
+<% end %>
+<br>
