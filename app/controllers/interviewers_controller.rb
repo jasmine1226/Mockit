@@ -55,7 +55,7 @@ class InterviewersController < ApplicationController
     end
 
     def filtering_params
-        params.permit(:job_title, :job_level, :experience, :is_manager)
+        params.permit(:company, :job_title, :job_level, :experience, :is_manager, :company_id)
     end
 
     def set_interviewer

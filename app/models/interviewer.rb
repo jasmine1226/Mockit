@@ -9,6 +9,11 @@ class Interviewer < ApplicationRecord
 
     include Filterable       
     scope :active, -> { where is_active: true }
+    scope :job_title, -> (job_title) { where job_title: job_title }
+    scope :job_level, -> (job_level) { where job_level: job_level}  
+    scope :experience, -> (experience) { where("experience >= ?", experience) }
+    scope :is_manager, -> (is_manager) { where is_manager: is_manager}    
+    scope :company_id, -> (company_id) { where company_id: company_id}
 
     def company_attributes=(company)
         self.company = Company.find_or_create_by(name: company[:name])
