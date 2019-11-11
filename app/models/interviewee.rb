@@ -4,5 +4,5 @@ class Interviewee < ApplicationRecord
     has_secure_password
     validates :email, uniqueness: true
     validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-
+    validates :experience, numericality: { less_than: 80 }
 end

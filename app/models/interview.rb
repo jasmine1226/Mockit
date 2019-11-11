@@ -3,6 +3,7 @@ class Interview < ApplicationRecord
     belongs_to :interviewee
     validates :interviewer_id, :interviewee_id, :date, :time, :length, presence: true
     validate :future_date, :on => :create
+    validates :length, numericality: { less_than: 10 }
 
     scope :interviewer, -> (interviewer_id) { where interviewer_id: interviewer_id }    
     scope :interviewee, -> (interviewee_id) { where interviewee_id: interviewee_id }

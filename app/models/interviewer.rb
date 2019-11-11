@@ -6,6 +6,8 @@ class Interviewer < ApplicationRecord
     validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
     belongs_to :company    
     accepts_nested_attributes_for :company
+    validates :experience, numericality: { less_than: 80 }
+    validates :rate, numericality: { less_than: 10000 }
 
     include Filterable       
     scope :active, -> { where is_active: true }
@@ -19,5 +21,4 @@ class Interviewer < ApplicationRecord
         self.company = Company.find_or_create_by(name: company[:name])
         self.company.update(company)
     end
-
 end
