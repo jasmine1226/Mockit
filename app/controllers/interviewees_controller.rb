@@ -24,6 +24,9 @@ class IntervieweesController < ApplicationController
     end
 
     def edit
+        if !is_current_user("Interviewee")
+            redirect_to interviewees_path, alert: "Access not authorized."
+        end
     end
 
     def update

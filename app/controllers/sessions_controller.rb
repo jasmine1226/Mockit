@@ -36,14 +36,10 @@ class SessionsController < ApplicationController
             if @interviewer = Interviewer.find_by(uid: auth['uid'])                
                 session[:id] = @interviewer.id
                 session[:account_type] = 'Interviewer'
-                redirect_to '/'
+                redirect_to root_path
             else 
                 @interviewer = Interviewer.new do |i|
-                    i.name = auth['info']['name']
-                    i.email = auth['info']['email']
-                    i.image = auth['info']['image']
-                    i.uid = auth['uid']
-                    i.password_digest = SecureRandom.urlsafe_base64 
+                    set_fb_attributes(i)
                 end
                 @interviewer.save      
                 session[:id] = @interviewer.id
@@ -54,14 +50,10 @@ class SessionsController < ApplicationController
             if @interviewee = Interviewee.find_by(uid: auth['uid'])
                 session[:id] = @interviewee.id
                 session[:account_type] = 'Interviewee'
-                redirect_to '/'
+                redirect_to root_path
             else 
                 @interviewee = Interviewee.new do |i|
-                    i.name = auth['info']['name']
-                    i.email = auth['info']['email']
-                    i.image = auth['info']['image']
-                    i.uid = auth['uid']
-                    i.password_digest = SecureRandom.urlsafe_base64 
+                    set_fb_attributes(i)
                 end
                 @interviewee.save      
                 session[:id] = @interviewee.id
@@ -69,7 +61,7 @@ class SessionsController < ApplicationController
                 redirect_to edit_interviewee_path(@interviewee)
             end
         else
-
+            redirect_to root_path
         end
     end
 
@@ -89,5 +81,13 @@ class SessionsController < ApplicationController
 
     def auth
         request.env['omniauth.auth']
+    end
+
+    def set_fb_attributes(i)
+        i.name = auth['info']['name']
+        i.email = auth['info']['email']
+        i.image = auth['info']['image']
+        i.uid = auth['uid']
+        i.password_digest = SecureRandom.urlsafe_base64 
     end
 end
