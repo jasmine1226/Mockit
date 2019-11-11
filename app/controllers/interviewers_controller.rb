@@ -44,7 +44,7 @@ class InterviewersController < ApplicationController
     end
 
     def index
-        @interviewers = Interviewer.active.filter_by(filtering_params)
+        @interviewers = Interviewer.active.filter_by(filtering_params).order(name: :asc)
     end
   
 

@@ -43,7 +43,7 @@ class IntervieweesController < ApplicationController
     end
     
     def index
-        @interviewees = Interviewee.all
+        @interviewees = Interviewee.all.order(name: :asc)
     end
 
     private
