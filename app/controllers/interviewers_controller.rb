@@ -4,6 +4,7 @@ class InterviewersController < ApplicationController
     
     def new
         @interviewer = Interviewer.new
+        @interviewer.build_company
     end
 
     def create
@@ -19,7 +20,7 @@ class InterviewersController < ApplicationController
 
     def show
         if !@interviewer
-            redirect_to interviewers_path
+            redirect_to interviewers_path, alert: "Interviewer not found."
         end        
     end
 
@@ -43,14 +44,18 @@ class InterviewersController < ApplicationController
     end
 
     def index
-        @interviewers = Interviewer.all
+        @interviewers = Interviewer.active.filter_by(filtering_params)
     end
   
 
     private    
 
     def interviewer_params
-        params.require(:interviewer).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate)
+        params.require(:interviewer).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate, company_attributes: [:name])
+    end
+
+    def filtering_params
+        params.permit(:job_title, :job_level, :experience, :is_manager)
     end
 
     def set_interviewer

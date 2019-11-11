@@ -19,8 +19,7 @@ class IntervieweesController < ApplicationController
 
     def show        
         if !@interviewee
-            flash[:error] = "This interviewee doesn't exist."
-            redirect_to interviewees_path
+            redirect_to interviewees_path, alert: "Interviewee not found."
         end
     end
 

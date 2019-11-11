@@ -1,12 +1,13 @@
     <%= f.error_messages%>
 
-    <%= f.text_field :name %> <br>
-    <%= f.text_field :email %> <br>
-    <%= f.password_field :password %> <br>
-    <%= f.text_field :job_title %> <br> 
-    <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"], selected = @interviewer.job_level) %> <br>
-    <%= f.label "Years of Experience" %>
-    <%= f.number_field :experience, hide_label: true %> <br> 
-    <%= f.check_box :is_manager %> <br>
-    <%= f.label "Hourly Rate" %>
-    <%= f.number_field :rate, hide_label: true %> <br><br>
+    <%= f.text_field :name %>
+    <%= f.text_field :email %>
+    <%= f.password_field :password %>
+    <%= f.fields_for :company do |c| %>
+        <%= c.text_field :name, label: "Company Name" %>
+    <% end %>
+    <%= f.text_field :job_title %>
+    <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"], selected = @interviewer.job_level) %>
+    <%= f.number_field :experience, label: "Years of Experience" %>
+    <%= f.check_box :is_manager %><br>
+    <%= f.number_field :rate, label: "Hourly Rate" %> <br>

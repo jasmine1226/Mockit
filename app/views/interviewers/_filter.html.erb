@@ -1,0 +1,6 @@
+<%= form_with model: @interviewer, method: :get, local: true do |f| %>
+        <%= f.collection_select(:job_title, Interviewer.active, :job_title, :job_title, include_blank: true )  %>    
+        <%= f.collection_select(:job_level, Interviewer.active, :job_level, :job_level, include_blank: true )  %> 
+    <%= f.submit "Filter", :class => "btn  btn-primary" %>
+<% end %>
+<br>

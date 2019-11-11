@@ -7,7 +7,8 @@
 <p>Name: <%= @interviewer.name %></p>
 <% if current_user == @interviewer%>
     <p>Email: <%= @interviewer.email %></p>
- <% end %>
+ <% end %> 
+<p>Company: <%= @interviewer.company.name %></p>
 <p>Job Title: <%= @interviewer.job_title %></p>
 <p>Job Level: <%= @interviewer.job_level %></p>
 <p>Years of Experience: <%= pluralize(@interviewer.experience, "year") %></p>
