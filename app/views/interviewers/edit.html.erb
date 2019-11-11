@@ -2,5 +2,7 @@
     
     <%= render 'form', f: f %>
 
+    <%= f.select :is_active, options_for_select([["Active", true], ["Inactive", false]], selected = @interviewer.is_active), { label: "Account Status" } %> <br>
+
     <%= f.submit "Update Account", :class => "btn  btn-primary" %>
 <% end %>

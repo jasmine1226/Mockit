@@ -6,7 +6,7 @@
     <%= f.password_field :password %> <br>
     <%= f.label "I aspire to become" %>
     <%= f.text_field :job_title, hide_label: true %> <br>
-    <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"]) %> <br>
+    <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"], selected = @interviewee.job_level) %> <br>
     <%= f.label "Years of Experience" %>
     <%= f.number_field :experience, hide_label: true%> <br> 
     <%= f.number_field :balance %> <br><br>

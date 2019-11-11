@@ -18,8 +18,7 @@ class InterviewersController < ApplicationController
     end
 
     def show
-        if @interviewer
-        else
+        if !@interviewer
             redirect_to interviewers_path
         end        
     end

@@ -22,9 +22,9 @@ class Interview < ApplicationRecord
     def status
         datetime = self.date + self.time.seconds_since_midnight.seconds
         if datetime < DateTime.now
-            "Completed"
+            self.status = "Completed"
         else
-            "Scheduled"
+            self.status = "Scheduled"
         end
     end
 end

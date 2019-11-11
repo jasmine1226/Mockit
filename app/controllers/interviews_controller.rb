@@ -1,5 +1,6 @@
 class InterviewsController < ApplicationController
     before_action :require_login
+    before_action :is_interviewee, only: [:new, :create]
 
     def new
         @interview = Interview.new
@@ -22,9 +23,11 @@ class InterviewsController < ApplicationController
 
     def index
         if session[:account_type] == "Interviewer"
-            @interviews = Interview.all.where("interviewer_id = ?", session[:id]).interviewee(Interviewee.find(params[:interviewer_id]))
+            @interviews = Interview.all.where("interviewer_id = ?", session[:id])
+            @interviews = @interviews.interviewee(Interviewee.find(params[:interviewee_id])) if params[:interviewee_id]
         elsif session[:account_type] == "Interviewee"
-            @interviews = Interview.all.where("interviewee_id = ?", session[:id]).interviewer(Interviewer.find(params[:interviewer_id]))
+            @interviews = Interview.all.where("interviewee_id = ?", session[:id])
+            @interviews = @interviews.interviewer(Interviewer.find(params[:interviewer_id])) if params[:interviewer_id]
         end
     end
 
@@ -36,5 +39,9 @@ class InterviewsController < ApplicationController
 
     def interview_params
         params.require(:interview).permit(:interviewer_id, :interviewee_id, :interview_type, :date, :time, :length, :cost)
+    end
+
+    def is_interviewee
+        return head(:forbidden) unless session[:account_type] == "Interviewee"
     end
 end

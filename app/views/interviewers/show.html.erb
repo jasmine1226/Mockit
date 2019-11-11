@@ -15,7 +15,9 @@
 <p>Status: <%= @interviewer.is_active ? "Active" : "Inactive" %></p>
 <p>Hourly Rate: $<%= @interviewer.rate %></p>
 
-<%= link_to "Schedule an Interview", new_interviewer_interview_path(@interviewer), :class => "btn  btn-primary"  %><br>
+<% if current_user && account_type == "Interviewee" %>
+    <%= link_to "Schedule an Interview", new_interviewer_interview_path(@interviewer), :class => "btn  btn-primary"  %><br>
+<% end %>
 
 <% if current_user == @interviewer%>
     <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete, :class => "btn  btn-secondary" %></p>
