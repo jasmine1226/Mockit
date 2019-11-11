@@ -8,6 +8,7 @@ end
       resources :interviews, only: [:new, :create, :index]
   end
   resources :interviews
+  resources :companies, only: [:show]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

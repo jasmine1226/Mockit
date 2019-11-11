@@ -8,14 +8,4 @@
 
 <p><%= render 'filter' %></p>
 
-<% @interviewers.each do |interviewer| %>
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title"><%= interviewer.name %></h4>
-            <p class="card-text"><%= interviewer.job_title %> (<%= interviewer.job_level %>) at <%= interviewer.company.name %></p>
-            <a href="<%= interviewer_path(interviewer) %>" class="card-link btn  btn-primary"> View Profile</a>
-            <a href="mailto:<%= interviewer.email %>" class="card-link btn  btn-primary"> Contact</a>
-        </div>
-    </div>
-<% end %>
-
+<p><%= render 'index' %></p>
