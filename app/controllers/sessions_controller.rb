@@ -38,10 +38,8 @@ class SessionsController < ApplicationController
                 session[:account_type] = 'Interviewer'
                 redirect_to root_path
             else 
-                @interviewer = Interviewer.new do |i|
-                    set_fb_attributes(i)
-                end
-                @interviewer.save      
+                @interviewer = Interviewer.new.set_fb_attributes(auth)
+                @interviewer.save
                 session[:id] = @interviewer.id
                 session[:account_type] = 'Interviewer'
                 redirect_to edit_interviewer_path(@interviewer)
@@ -52,10 +50,8 @@ class SessionsController < ApplicationController
                 session[:account_type] = 'Interviewee'
                 redirect_to root_path
             else 
-                @interviewee = Interviewee.new do |i|
-                    set_fb_attributes(i)
-                end
-                @interviewee.save      
+                @interviewee = Interviewee.new.set_fb_attributes(auth)                
+                @interviewee.save    
                 session[:id] = @interviewee.id
                 session[:account_type] = 'Interviewee'
                 redirect_to edit_interviewee_path(@interviewee)
@@ -81,13 +77,5 @@ class SessionsController < ApplicationController
 
     def auth
         request.env['omniauth.auth']
-    end
-
-    def set_fb_attributes(i)
-        i.name = auth['info']['name']
-        i.email = auth['info']['email']
-        i.image = auth['info']['image']
-        i.uid = auth['uid']
-        i.password_digest = SecureRandom.urlsafe_base64 
     end
 end

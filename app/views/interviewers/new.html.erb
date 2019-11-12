@@ -1,8 +1,8 @@
+<%= button_to 'Sign up with Facebook!', '/auth/facebook/?account_type=interviewer', :class => "btn  btn-primary"  %><br>
+
 <%= bootstrap_form_with model: @interviewer, local: true do |f|%>
     
     <%= render 'form', f: f %>
 
     <%= f.submit "Create Account", :class => "btn  btn-primary"  %>
 <% end %>
-<br>
-<%= button_to 'Sign up with Facebook!', '/auth/facebook/?account_type=interviewer', :class => "btn  btn-primary"  %>

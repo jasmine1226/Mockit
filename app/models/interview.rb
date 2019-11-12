@@ -9,7 +9,7 @@ class Interview < ApplicationRecord
     scope :interviewee, -> (interviewee_id) { where interviewee_id: interviewee_id }
 
     def future_date
-        if date <= Date.today
+        if date && date <= Date.today
             errors.add(:date, "You cannot schedule an interview on the same day or in the past.")
         end
     end

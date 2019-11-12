@@ -14,5 +14,4 @@
 
 <% if current_user == @interviewee%>
     <p>Account Balance: $<%= @interviewee.balance %></p><br>
-    <p><%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete, :class => "btn  btn-secondary"  %></p>
 <% end %>

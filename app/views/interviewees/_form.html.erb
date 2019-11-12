@@ -3,6 +3,7 @@
     <%= f.text_field :name %> <br>
     <%= f.text_field :email %> <br>
     <%= f.password_field :password %> <br>
+    <%= f.password_field :password_confirmation %> <br>
     <%= f.label "I aspire to become" %>
     <%= f.text_field :job_title, hide_label: true %> <br>
     <%= f.select :job_level, options_for_select([["Select One", ""], "Student", "Junior", "Senior", "Principal", "Director", "C-suite"], selected = @interviewee.job_level) %> <br>

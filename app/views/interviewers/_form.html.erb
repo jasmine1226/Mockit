@@ -3,6 +3,7 @@
     <%= f.text_field :name %>
     <%= f.text_field :email %>
     <%= f.password_field :password %>
+    <%= f.password_field :password_confirmation %> <br>
     <%= f.fields_for :company do |c| %>
         <%= c.text_field :name, list:"companies_autocomplete", label: "Company Name" %>
         <datalist id="companies_autocomplete">

@@ -6,3 +6,7 @@
 
     <%= f.submit "Update Account", :class => "btn  btn-primary" %>
 <% end %>
+
+<% if current_user == @interviewer%>
+    <p><%= button_to 'Delete Account', interviewer_path(@interviewer), method: :delete, :class => "btn  btn-secondary" %></p>
+<% end %>

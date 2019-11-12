@@ -21,4 +21,14 @@ class Interviewer < ApplicationRecord
         self.company = Company.find_or_create_by(name: company[:name])
         self.company.update(company)
     end
+
+    def set_fb_attributes(auth)
+        self.name = auth['info']['name']
+        self.email = auth['info']['email']
+        self.image = auth['info']['image']
+        self.uid = auth['uid']
+        self.experience = 0
+        self.password_digest = SecureRandom.urlsafe_base64
+        self
+    end
 end

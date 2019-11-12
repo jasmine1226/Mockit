@@ -40,10 +40,13 @@ class InterviewersController < ApplicationController
     end
 
     def destroy
+        if !is_current_user("Interviewer")
+            redirect_to interviewers_path, alert: "Access not authorized."
+        end
         @interviewer.destroy
         session.delete :id
         session.delete :account_type
-        redirect_to '/'
+        redirect_to root_path
     end
 
     def index
@@ -54,7 +57,7 @@ class InterviewersController < ApplicationController
     private    
 
     def interviewer_params
-        params.require(:interviewer).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate, company_attributes: [:name])
+        params.require(:interviewer).permit(:name, :email, :password, :password_confirmation, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate, company_attributes: [:name])
     end
 
     def filtering_params

@@ -25,7 +25,7 @@ class IntervieweesController < ApplicationController
 
     def edit
         if !is_current_user("Interviewee")
-            redirect_to interviewees_path, alert: "Access not authorized."
+            redirect_to interviewers_path, alert: "Access not authorized."
         end
     end
 
@@ -39,6 +39,9 @@ class IntervieweesController < ApplicationController
     end
 
     def destroy
+        if !is_current_user("Interviewee")
+            redirect_to interviewers_path, alert: "Access not authorized."
+        end
         @interviewee.destroy
         session.delete :id
         session.delete :account_type
@@ -52,7 +55,7 @@ class IntervieweesController < ApplicationController
     private
 
     def interviewee_params
-        params.require(:interviewee).permit(:name, :email, :password, :uid, :image, :job_title, :job_level, :experience, :balance)
+        params.require(:interviewee).permit(:name, :email, :password, :password_confirmation, :uid, :image, :job_title, :job_level, :experience, :balance)
     end
 
     def set_interviewee
