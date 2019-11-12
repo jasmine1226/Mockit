@@ -20,7 +20,6 @@ gem 'thin'
 gem 'dynamic_form'
 gem 'pry'
 gem "bootstrap_form", "~> 4.0"
-gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
