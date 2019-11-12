@@ -6,5 +6,5 @@
 <% end %>
 
 <% if current_user == @interviewee%>
-    <p><%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete, :class => "btn  btn-secondary"  %></p>
+    <p><%= button_to 'Delete Account', interviewee_path(@interviewee), method: :delete, :class => "btn  btn-secondary", data: {confirm: "Are you sure?"} %></p>
 <% end %>
