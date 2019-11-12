@@ -4,7 +4,9 @@
             <h4 class="card-title"><%= interviewer.name %></h4>
             <p class="card-text"><%= interviewer.job_title %> (<%= interviewer.job_level %>) at <%= link_to interviewer.company.name, company_path(interviewer.company) %></p>
             <a href="<%= interviewer_path(interviewer) %>" class="card-link btn  btn-primary"> View Profile</a>
-            <a href="mailto:<%= interviewer.email %>" class="card-link btn  btn-primary"> Contact</a>
+            <% if current_user %>
+                <a href="mailto:<%= interviewer.email %>" class="card-link btn  btn-primary"> Contact</a>
+            <% end %>
         </div>
     </div>
 <% end %>

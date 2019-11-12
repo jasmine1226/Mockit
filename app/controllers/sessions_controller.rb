@@ -63,14 +63,14 @@ class SessionsController < ApplicationController
 
     def index
         if session[:id]
-            redirect_to '/'
+            redirect_to root_path
         end
     end
 
     def destroy
         session.delete :id
         session.delete :account_type
-        redirect_to '/'
+        redirect_to root_path
     end
 
     private

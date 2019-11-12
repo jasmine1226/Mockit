@@ -45,7 +45,7 @@ class IntervieweesController < ApplicationController
         @interviewee.destroy
         session.delete :id
         session.delete :account_type
-        redirect_to '/'
+        redirect_to root_path
     end
     
     def index

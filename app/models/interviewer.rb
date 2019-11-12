@@ -29,7 +29,7 @@ class Interviewer < ApplicationRecord
         self.uid = auth['uid']
         self.experience = 0        
         self.rate = 0
-        self.build_company
+        self.company = Company.new
         self.password_digest = SecureRandom.urlsafe_base64
         self
     end
