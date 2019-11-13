@@ -1,5 +1,10 @@
     <%= f.error_messages%>
     
+    <% if session[:auth] %>
+        <%= f.hidden_field :uid, value: session[:auth]['uid'] %>
+        <%= f.hidden_field :image, value: session[:auth]['info']['image'] %>
+    <% end %>
+
     <%= f.text_field :name %> <br>
     <%= f.text_field :email %> <br>
     <%= f.password_field :password %> <br>

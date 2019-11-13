@@ -1,4 +1,7 @@
-<%= button_to 'Sign up with Facebook!', '/auth/facebook/?account_type=interviewee', :class => "btn  btn-primary"  %><br>
+<% if !session[:auth] %>
+    <%= button_to 'Sign up with Facebook!', '/auth/facebook/?account_type=interviewee', :class => "btn  btn-primary"  %><br>
+<% end %>
+
 <%= bootstrap_form_with model: @interviewee, local: true do |f|%>
 
     <%= render 'form', f: f %>

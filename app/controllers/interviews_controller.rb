@@ -36,6 +36,9 @@ class InterviewsController < ApplicationController
     end
 
     def show
+        if !@interview
+            redirect_to interviews_path, alert: "Interview not found."
+        end
         @interview = Interview.find_by_id(params[:id])
     end
 

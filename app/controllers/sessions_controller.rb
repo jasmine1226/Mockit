@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         elsif params[:account_type] == 'Interviewee'
             @interviewee = Interviewee.find_by(email: params[:email])
             if @interviewee && @interviewee.authenticate(params[:password])
-                session[:id] = @interviewee.id 
+                session[:id] = @interviewee.id
                 session[:account_type] = params[:account_type]           
                 redirect_to interviewee_path(@interviewee)
             else                
@@ -32,29 +32,23 @@ class SessionsController < ApplicationController
     end
 
     def create_from_fb
-        if request.env['omniauth.params']['account_type'] == "interviewer"
+        if account_type == "interviewer"
             if @interviewer = Interviewer.find_by(uid: auth['uid'])                
                 session[:id] = @interviewer.id
                 session[:account_type] = 'Interviewer'
                 redirect_to root_path
-            else 
-                @interviewer = Interviewer.new.set_fb_attributes(auth)
-                @interviewer.save
-                session[:id] = @interviewer.id
-                session[:account_type] = 'Interviewer'
-                redirect_to edit_interviewer_path(@interviewer)
+            else
+                session[:auth] = auth
+                redirect_to new_interviewer_path
             end
-        elsif request.env['omniauth.params']['account_type'] == "interviewee"
+        elsif account_type == "interviewee"
             if @interviewee = Interviewee.find_by(uid: auth['uid'])
                 session[:id] = @interviewee.id
                 session[:account_type] = 'Interviewee'
                 redirect_to root_path
             else 
-                @interviewee = Interviewee.new.set_fb_attributes(auth)                
-                @interviewee.save    
-                session[:id] = @interviewee.id
-                session[:account_type] = 'Interviewee'
-                redirect_to edit_interviewee_path(@interviewee)
+                session[:auth] = auth
+                redirect_to new_interviewee_path
             end
         else
             redirect_to root_path
@@ -70,6 +64,7 @@ class SessionsController < ApplicationController
     def destroy
         session.delete :id
         session.delete :account_type
+        session.delete :auth
         redirect_to root_path
     end
 
@@ -78,4 +73,9 @@ class SessionsController < ApplicationController
     def auth
         request.env['omniauth.auth']
     end
+
+    def account_type
+        request.env['omniauth.params']['account_type'] 
+    end
+
 end

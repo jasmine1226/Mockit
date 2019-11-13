@@ -11,7 +11,6 @@ class Interviewee < ApplicationRecord
         self.email = auth['info']['email']
         self.image = auth['info']['image']
         self.uid = auth['uid']
-        self.experience = 0
         self.password_digest = SecureRandom.urlsafe_base64
         self
     end

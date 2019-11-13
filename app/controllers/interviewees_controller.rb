@@ -4,6 +4,7 @@ class IntervieweesController < ApplicationController
     
     def new
         @interviewee = Interviewee.new
+        @interviewee.set_fb_attributes(session[:auth]) if session[:auth]
     end
 
     def create

@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
     end
 
     def is_current_user(account_type)
-         params[:id] == session[:id].to_s && session[:account_type] == account_type
+        params[:id] == session[:id].to_s && session[:account_type] == account_type
     end
 end

@@ -1,10 +1,11 @@
 class InterviewersController < ApplicationController
     before_action :set_interviewer, only: [:show, :edit, :update, :destroy]    
-    before_action :require_login, except: [:new, :create, :show, :index]
+    before_action :require_login, except: [:new, :create, :show, :index, :new_from_fb]
     
     def new
         @interviewer = Interviewer.new
         @interviewer.build_company
+        @interviewer.set_fb_attributes(session[:auth]) if session[:auth]
     end
 
     def create
@@ -17,7 +18,7 @@ class InterviewersController < ApplicationController
             render :new
         end
     end
-
+    
     def show
         if !@interviewer
             redirect_to interviewers_path, alert: "Interviewer not found."
@@ -57,7 +58,19 @@ class InterviewersController < ApplicationController
     private    
 
     def interviewer_params
-        params.require(:interviewer).permit(:name, :email, :password, :password_confirmation, :uid, :image, :job_title, :job_level, :experience, :is_manager, :is_active, :rate, company_attributes: [:name])
+        params.require(:interviewer).permit(:name, 
+                                            :email, 
+                                            :password, 
+                                            :password_confirmation, 
+                                            :uid, 
+                                            :image, 
+                                            :job_title, 
+                                            :job_level, 
+                                            :experience, 
+                                            :is_manager, 
+                                            :is_active, 
+                                            :rate, 
+                                            company_attributes: [:name])
     end
 
     def filtering_params
