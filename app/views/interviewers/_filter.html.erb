@@ -1,9 +1,9 @@
 
 <%= form_with model: @interviewer, method: :get, local: true do |f| %>
     <%= f.label :job_title %>
-    <%= f.collection_select(:job_title, Interviewer.active, :job_title, :job_title, include_blank: true ) %>
+    <%= f.collection_select(:job_title, Interviewer.job_titles, :job_title, :job_title, include_blank: true ) %>
     <%= f.label :job_level %>  
-    <%= f.collection_select(:job_level, Interviewer.active, :job_level, :job_level, include_blank: true ) %> 
+    <%= f.collection_select(:job_level, Interviewer.job_levels, :job_level, :job_level, include_blank: true ) %> 
     <%= f.label :experience %>
     <%= f.select :experience, [["2+ Years", 2], ["5+ Years", 5], ["10+ Years", 10]], include_blank: true  %>   
     <%= f.label "Job Type" %>

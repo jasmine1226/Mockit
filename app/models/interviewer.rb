@@ -30,4 +30,12 @@ class Interviewer < ApplicationRecord
         self.password_digest = SecureRandom.urlsafe_base64
         self
     end
+
+    def self.job_titles
+        self.select(:job_title).distinct
+    end
+
+    def self.job_levels
+        self.select(:job_level).distinct
+    end
 end
