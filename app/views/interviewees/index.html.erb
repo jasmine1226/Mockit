@@ -6,6 +6,12 @@
 
 <h1>Interviewee Index Page</h1><br>
 
+<%= form_tag(interviewees_path, method: :get) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'Search', :class => "btn btn-light" %>
+<% end %>
+<br>
+
 <% @interviewees.each do |interviewee| %>
     <div class="card">
         <div class="card-body">

@@ -50,7 +50,11 @@ class IntervieweesController < ApplicationController
     end
     
     def index
-        @interviewees = Interviewee.all.order(name: :asc)
+        if params[:search]
+            @interviewees = Interviewee.where('name LIKE ?', "%#{params[:search]}%")
+        else
+            @interviewees = Interviewee.all.order(name: :asc)
+        end
     end
 
     private
