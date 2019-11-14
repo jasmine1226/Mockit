@@ -7,10 +7,10 @@ class Interviewee < ApplicationRecord
     validates :experience, numericality: { less_than: 80 }
 
     def set_fb_attributes(auth)
-        self.name = auth['info']['name']
-        self.email = auth['info']['email']
-        self.image = auth['info']['image']
         self.uid = auth['uid']
+        self.name = auth['name']
+        self.email = auth['email']
+        self.image = auth['image']
         self.password_digest = SecureRandom.urlsafe_base64
         self
     end

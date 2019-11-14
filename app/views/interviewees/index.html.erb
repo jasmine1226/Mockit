@@ -12,7 +12,9 @@
             <h4 class="card-title"><%= interviewee.name %></h4>
             <p class="card-text">Inspired <%= interviewee.job_title %></p>
             <a href="<%= interviewee_path(interviewee) %>" class="card-link btn  btn-primary"> View Profile</a>
-            <a href="mailto:<%= interviewee.email %>" class="card-link btn  btn-primary"> Contact</a>
+            <% if current_user %>
+                <a href="mailto:<%= interviewee.email %>" class="card-link btn  btn-primary"> Contact</a>
+            <% end %>
         </div>
     </div>
 <% end %>

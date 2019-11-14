@@ -1,8 +1,8 @@
     <%= f.error_messages%>
 
     <% if session[:auth] %>
-        <%= f.hidden_field :uid, value: session[:auth]['uid'] %>
-        <%= f.hidden_field :image, value: session[:auth]['info']['image'] %>
+        <%= f.hidden_field :uid, value: @interviewer.uid %>
+        <%= f.hidden_field :image, value: @interviewer.image %>
     <% end %>
 
     <%= f.text_field :name %>

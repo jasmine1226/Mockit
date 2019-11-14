@@ -38,7 +38,12 @@ class SessionsController < ApplicationController
                 session[:account_type] = 'Interviewer'
                 redirect_to root_path
             else
-                session[:auth] = auth
+                session[:auth] = {
+                    uid: auth['uid'],
+                    name: auth['info']['name'],
+                    email: auth['info']['email'],
+                    image: auth['info']['image']
+                }
                 redirect_to new_interviewer_path
             end
         elsif account_type == "interviewee"
@@ -47,7 +52,12 @@ class SessionsController < ApplicationController
                 session[:account_type] = 'Interviewee'
                 redirect_to root_path
             else 
-                session[:auth] = auth
+                session[:auth] = {
+                    uid: auth['uid'],
+                    name: auth['info']['name'],
+                    email: auth['info']['email'],
+                    image: auth['info']['image']
+                }
                 redirect_to new_interviewee_path
             end
         else
